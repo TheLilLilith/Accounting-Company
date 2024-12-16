@@ -1,0 +1,78 @@
+﻿<Window x:Class="AccountingConstructionCompany.NewCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AccountingConstructionCompany"
+          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Новый клиент" Height="436.543" Width="349.137" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None"  AllowsTransparency="True" Background="Transparent" ShowInTaskbar="True" Topmost="True" Icon="bin/img/helmet.ico">
+    <Grid MouseDown="Grid_MouseDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="46*" />
+            <RowDefinition Height="160*"/>
+            <RowDefinition Height="167*"/>
+            <RowDefinition Height="64*"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="White" Grid.RowSpan="4" CornerRadius="0,0,10,10" />
+        <Border Background="Black">
+            <Grid>
+                <Button Style="{StaticResource MaterialDesignFlatAccentButton}" Name="HideButton" Click="HideButton_Click"  HorizontalAlignment="Right"  Foreground="White" FontFamily="Open Sans Bold" FontSize="15" Margin="0,0,60,0">
+                    <materialDesign:PackIcon Kind="Minimize"/>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFlatAccentButton}" Name="CloseButton" Click="CloseButton_Click" HorizontalAlignment="Right"   Foreground="White" FontFamily="Open Sans Bold" FontSize="15" Margin="0,0,10,0">
+                    <materialDesign:PackIcon Kind="Close"/>
+                </Button>
+            </Grid>
+        </Border>
+        <StackPanel Grid.Row="1">
+            <Image  Source="bin/img/add.png" Stretch="UniformToFill" Height="100" Width="100"/>
+            <Label  Content="Новый клиент" Foreground="Black"  FontFamily="Open Sans Bold" FontSize="25" HorizontalAlignment="Center" Margin="0,10,0,0" FontWeight="Bold" ></Label>
+        </StackPanel>
+        <WrapPanel Grid.Row="2" Grid.RowSpan="2">
+            <StackPanel>
+                <TextBox x:Name="cNameBox" Margin="10,10,0,0" Width="160"  materialDesign:HintAssist.Hint="Имя" 
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                             materialDesign:HintAssist.Foreground="Black"/>
+                <TextBox x:Name="cSurnameBox" Margin="10,10,0,0" Width="160" materialDesign:HintAssist.Hint="Фамилия" 
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                             materialDesign:HintAssist.Foreground="Black"/>
+                <TextBox x:Name="cPatronymicBox" Margin="10,10,0,0" Width="160" materialDesign:HintAssist.Hint="Отчество" 
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                             materialDesign:HintAssist.Foreground="Black"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBox x:Name="cMailBox" Margin="10,10,0,0" Width="160" materialDesign:HintAssist.Hint="Почта" 
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                             materialDesign:HintAssist.Foreground="Black"/>
+                <TextBox x:Name="cPhoneBox" Margin="10,10,0,0" Width="160" materialDesign:HintAssist.Hint="Телефон" 
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                             materialDesign:HintAssist.Foreground="Black"/>
+
+                <TextBox x:Name="cAdressBox" Margin="10,10,0,0" Width="160" materialDesign:HintAssist.Hint="Адрес" 
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                             materialDesign:HintAssist.Foreground="Black"/>
+            </StackPanel>
+        </WrapPanel>
+        <WrapPanel Grid.Row="3" Margin="10">
+            <!--Кнопка назад-->
+            <Button  Content="Назад" Foreground="Black" Background="Transparent" Name="BackButton" Click="BackButton_Click"  Margin="0,0,0,0" Width="150" BorderThickness="0"/>
+            <!--Кнопка регистрации-->
+            <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="AddClientButton"  Click="AddClientButton_Click"  Content="Добавить" Background="Black" Foreground="White" Margin="10,0,0,0" Width="150"  />
+        </WrapPanel>
+
+    </Grid>
+</Window>

@@ -1,0 +1,96 @@
+﻿<Page x:Class="AccountingConstructionCompany.ReportsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:AccountingConstructionCompany"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ReportsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="19*"/>
+            <RowDefinition Height="14*"/>
+            <RowDefinition Height="117*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Отчеты" Foreground="Black" Grid.Row="0"  FontFamily="Open Sans Bold" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontWeight="Bold"></Label>
+        <WrapPanel Grid.Row="1" Grid.RowSpan="2">
+            <ComboBox Name="ProductsComboBox" Margin="20,0,0,0" Width="150" materialDesign:HintAssist.Hint="Товары" SelectionChanged="ProductsComboBox_SelectionChanged" FontSize="20" FontWeight="Bold" Focusable="False">
+                <ComboBoxItem>
+                    <WrapPanel>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="ProductIncome" Click="ProductIncome_Click"  Content="Лог прихода" Background="#fcd464" Foreground="Black" Margin="10,0,0,0" Width="120"/>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="ProductIncomeSort" Click="ProductIncomeSort_Click"  Content="Фильтр."  Background="#fcd464" Foreground="Black" Margin="10,0,0,0" Width="100">
+                            <Button.ToolTip>
+                                <TextBlock>Фильтрация по дням и товарам</TextBlock>
+                            </Button.ToolTip>
+                        </Button>
+                    </WrapPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <WrapPanel>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="ProductExpense" Click="ProductExpense_Click" Content="Лог ухода"  Background="#fcd464" Foreground="Black" Margin="10,0,0,0" Width="120"/>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="ProductExpenseSort" Click="ProductExpenseSort_Click" Content="Фильтр"  Background="#fcd464" Foreground="Black" Margin="10,0,0,0" Width="100">
+                            <Button.ToolTip>
+                                <TextBlock>Фильтрация по дням и товарам</TextBlock>
+                            </Button.ToolTip>
+                        </Button>
+                    </WrapPanel>
+                </ComboBoxItem>
+            </ComboBox>
+
+            <ComboBox Name="MoneyComboBox" SelectionChanged="MoneyComboBox_SelectionChanged" Margin="20,0,0,0" Width="150" materialDesign:HintAssist.Hint="Средства" FontSize="20" FontWeight="Bold" Focusable="False">
+                <ComboBoxItem>
+                    <WrapPanel>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="MoneyIncome" Click="MoneyIncome_Click" Content="Лог доходов" Background="#fcd464" Foreground="Black" Margin="10,0,0,0" Width="120"/>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="MoneyIncomeSort" Click="MoneyIncomeSort_Click" Content="Фильтр."  Background="#fcd464" Foreground="Black" Margin="10,0,0,0" Width="100">
+                            <Button.ToolTip>
+                                <TextBlock>Фильтрация по дням</TextBlock>
+                            </Button.ToolTip>
+                        </Button>
+                    </WrapPanel>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <WrapPanel>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"  Name="MoneyExpense" Click="MoneyExpense_Click" Content="Лог расходов"  Background="#fcd464" Foreground="Black" Margin="10,0,0,0" Width="120"/>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"  Name="MoneyExpenseSort" Click="MoneyExpenseSort_Click"  Content="Фильтр"  Background="#fcd464" Foreground="Black" Margin="10,0,0,0" Width="100">
+                            <Button.ToolTip>
+                                <TextBlock>Фильтрация по дням</TextBlock>
+                            </Button.ToolTip>
+                        </Button>
+                    </WrapPanel>
+                </ComboBoxItem>
+            </ComboBox>
+
+            <ComboBox Name="WarehouseComboBox" SelectionChanged="WarehouseComboBox_SelectionChanged" Margin="20,0,0,0" Width="150" materialDesign:HintAssist.Hint="Склад"  FontSize="20" FontWeight="Bold" Focusable="False">
+                <ComboBoxItem>
+                    <WrapPanel>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"  Name="WarehouseLog" Click="WarehouseLog_Click" Content="Товары"  Background="#fcd464" Foreground="Black" Margin="10,0,0,0" Width="100"/>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="WarehouseTotal" Click="WarehouseTotal_Click" Content="Всего" Background="#fcd464" Foreground="Black" Margin="10,0,0,0" Width="100">
+                            <Button.ToolTip>
+                                <TextBlock>Всего товаров на складе</TextBlock>
+                        </Button.ToolTip>
+                        </Button>
+                    </WrapPanel>
+                </ComboBoxItem>
+            </ComboBox>
+            <ComboBox Name="OrdersComboBox" SelectionChanged="OrdersComboBox_SelectionChanged" Margin="20,0,0,0" Width="120" materialDesign:HintAssist.Hint="Заказы"  FontSize="20" FontWeight="Bold" Focusable="False">
+                <ComboBoxItem>
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}"  Name="ActiveOrders" Click="ActiveOrders_Click"  Content="Активен"  Background="#fcd464" Foreground="Black"  Width="100"/>
+                    
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="ConfirmedOrders" Click="ConfirmedOrders_Click" Content="Завершен" Background="#fcd464" Foreground="Black"  Width="100"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="CancelledOrders" Click="CancelledOrders_Click" Content="Отменен" Background="#fcd464" Foreground="Black"  Width="100"/>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="TotalOrders" Click="TotalOrders_Click" Content="Всего" Background="#fcd464" Foreground="Black" Margin="0,0,0,0" Width="100"/>
+                </ComboBoxItem>
+            </ComboBox>
+        </WrapPanel>
+        <DataGrid Grid.Row="2" x:Name="ReportsDataGrid" IsReadOnly="True" ItemsSource="{Binding Table}"  Height="Auto"  />
+    </Grid>
+</Page>

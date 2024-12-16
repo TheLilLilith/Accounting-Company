@@ -1,0 +1,91 @@
+create table Users (
+	ID INT NOT NULL AUTO_INCREMENT,
+	UserLogin VARCHAR(255) NOT NULL,
+  UserPassword VARCHAR(50) NOT NULL,
+	UserName VARCHAR(255) NOT NULL,
+	UserSurname VARCHAR(255) NOT NULL,
+	UserPatronymic VARCHAR(255),
+	Phone VARCHAR(20) NOT NULL,
+  Email VARCHAR(50) NOT NULL,
+  CompanyName VARCHAR(100) NOT NULL,
+	Role VARCHAR(50) NOT NULL,
+	PRIMARY KEY(ID)
+);
+
+CREATE TABLE TempUsers (
+    ID INT AUTO_INCREMENT,
+    UserLogin VARCHAR(50) NOT NULL,
+    UserPassword VARCHAR(50) NOT NULL,
+		UserName VARCHAR(255) NOT NULL,
+		UserSurname VARCHAR(255) NOT NULL,
+		UserPatronymic VARCHAR(255),
+		Phone VARCHAR(20) NOT NULL,
+    Email VARCHAR(50) NOT NULL,
+    CompanyName VARCHAR(100) NOT NULL,
+		PRIMARY KEY(ID)
+);
+
+
+
+CREATE TABLE Customers (
+    ID INT AUTO_INCREMENT,
+    CName VARCHAR(100) NOT NULL,
+    CSurname VARCHAR(100) NOT NULL,
+    CPatronymic VARCHAR(100) NOT NULL,
+    Email VARCHAR(50) NOT NULL,
+    Phone VARCHAR(20) NOT NULL,
+    Address VARCHAR(200) NOT NULL,
+		PRIMARY KEY(ID)
+);
+CREATE TABLE Suppliers (
+    ID INT AUTO_INCREMENT,
+    SupplierName VARCHAR(100) NOT NULL,
+    ContactName VARCHAR(100) NOT NULL,
+    ContactEmail VARCHAR(50) NOT NULL,
+    ContactPhone VARCHAR(20) NOT NULL,
+    PRIMARY KEY(ID)  
+);
+
+CREATE TABLE Inventory (
+    ID INT AUTO_INCREMENT,
+    ProductName VARCHAR(100) NOT NULL,
+    Quantity INT NOT NULL,
+    Price DECIMAL(10,2) NOT NULL,
+    SupplierPrice DECIMAL(10,2),
+    Type VARCHAR(50),
+    SupplierID INT,
+    PRIMARY KEY(ID),
+    FOREIGN KEY (SupplierID) REFERENCES Suppliers(ID)
+);
+
+CREATE TABLE Orders (
+    ID INT AUTO_INCREMENT,
+    CustomerID INT NOT NULL,
+    ProductID INT NOT NULL,
+    Quantity INT NOT NULL,
+    Total DECIMAL(10,2) NOT NULL,
+    Commentary VARCHAR(255),
+    OrderDate DATE NOT NULL,
+		OrderStatus VARCHAR(50) NOT NULL,
+		PRIMARY KEY(ID),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(ID),
+    FOREIGN KEY (ProductID) REFERENCES Inventory(ID)
+);
+
+CREATE TABLE Income(
+		ID INT AUTO_INCREMENT,
+		IncomeDate DATE NOT NULL,
+		OrderID INT NOT NULL,
+		TotalIncome INT NOT NULL,
+		PRIMARY KEY(ID),
+		FOREIGN KEY(OrderID) REFERENCES Orders(ID)
+);
+CREATE TABLE Expense(
+		ID INT AUTO_INCREMENT,
+		ExpenseDate DATE NOT NULL,
+		ProductID INT NOT NULL,
+		Quantity INT NOT NULL,
+		TotalExpense INT NOT NULL,
+		PRIMARY KEY(ID),
+		FOREIGN KEY(ProductID) REFERENCES inventory(ID)
+);

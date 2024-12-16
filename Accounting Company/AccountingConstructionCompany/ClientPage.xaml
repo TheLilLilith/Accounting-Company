@@ -1,0 +1,92 @@
+﻿<Page x:Class="AccountingConstructionCompany.ClientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:AccountingConstructionCompany"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClientPage">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="79*"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <Label Content="Клиенты" Foreground="Black"  FontFamily="Open Sans Bold" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Top"  Margin="10,10,0,0" FontWeight="Bold"></Label>
+            <Border Width="1.3" CornerRadius="10,10,10,10"  Background="Black" Height="40" Margin="10,10,0,0"></Border>
+            <Button HorizontalAlignment="Right" Name="NewClientButton" Click="NewClientButton_Click"  VerticalAlignment="Top" Width="130" Height="30" Margin="15,15,5,0" Content="Новый клиент"  Background="#fcd464" Foreground="Black"/>
+        </WrapPanel>
+        <StackPanel Margin="0,5,0,0" Grid.Row="1" >
+            <WrapPanel>
+                <Border Width="250" Height="40" HorizontalAlignment="Left" Margin="50,0,0,0" >
+                    <ComboBox Name="OrdersComboBox"  materialDesign:HintAssist.Hint="История заявок" Focusable="False" SelectionChanged="OrdersComboBox_SelectionChanged"   ItemsSource="{Binding Order}" IsReadOnly="True" >
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <WrapPanel>
+                                        <StackPanel>
+                                            <Label HorizontalAlignment="Center" FontFamily="Comic Sans Bold" FontSize="15">Дата:</Label>
+                                            <TextBlock HorizontalAlignment="Center"  FontFamily="Comic Sans Bold" FontSize="15"  FontWeight="DemiBold" Text="{Binding Path=OrderDate, StringFormat='dd-MM-yyyy'}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Margin="10,0,0,0">
+                                            <Label HorizontalAlignment="Center"  FontFamily="Comic Sans Bold" FontSize="15">Наименование:</Label>
+                                            <TextBlock HorizontalAlignment="Center"   FontFamily="Comic Sans Bold" FontSize="15" FontWeight="DemiBold" Text="{Binding Path = ProductName}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Margin="10,0,0,0">
+                                            <Label HorizontalAlignment="Center"  FontFamily="Comic Sans Bold" FontSize="15" >Количество:</Label>
+                                            <TextBlock HorizontalAlignment="Center"  FontFamily="Comic Sans Bold" FontSize="15" FontWeight="DemiBold" Text="{Binding Path = Quantity}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Margin="10,0,0,0">
+                                            <Label HorizontalAlignment="Center" FontFamily="Comic Sans Bold" FontSize="15" >Сумма:</Label>
+                                            <TextBlock HorizontalAlignment="Center"  FontFamily="Comic Sans Bold" FontSize="15" FontWeight="DemiBold" Text="{Binding Path = Total}"></TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Margin="10,0,0,0">
+                                            <Label HorizontalAlignment="Center" FontFamily="Comic Sans Bold" FontSize="15">Статус:</Label>
+                                            <TextBlock HorizontalAlignment="Center" FontFamily="Comic Sans Bold" FontSize="15" FontWeight="DemiBold" Text="{Binding Path = OrderStatus}"></TextBlock>
+                                        </StackPanel>
+
+                                    </WrapPanel>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Border>
+                <CheckBox Name="ActiveOrdersCheckBox" Checked="ActiveOrdersCheckBox_Checked" Unchecked="ActiveOrdersCheckBox_Unchecked" Margin="10,0,0,0">Активные заявки</CheckBox>
+            </WrapPanel>
+            <Border Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" CornerRadius="20,0,0,20" Width="650" Height="350" >
+                <ListView Grid.Row ="2" SelectionMode="Single"   ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Name="CustomerListView" SelectionChanged="CustomerListView_SelectionChanged" ItemsSource="{Binding Path=Table}" Margin="10,10,0,0">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Margin="10,0,0,0" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+                            <StackPanel Width="600">
+                                <WrapPanel>
+                                    <Label FontFamily="Comic Sans Bold" FontSize="12" Width="100">Имя:</Label>
+                                    <Label FontFamily="Comic Sans Bold" FontSize="12" Width="100">Фамилия:</Label>
+                                    <Label FontFamily="Comic Sans Bold" FontSize="12" Width="100">Отчество:</Label>
+                                    <Label FontFamily="Comic Sans Bold" FontSize="12" Width="100">Телефон:</Label>
+                                    <Label FontFamily="Comic Sans Bold" FontSize="12" Width="100">Адрес:</Label>
+                                </WrapPanel>
+                                <WrapPanel>
+                                    <TextBlock Margin="5,4,0,0"  FontFamily="Comic Sans Bold" FontSize="12"  Width="90" FontWeight="DemiBold" Text="{Binding Path = CName}"></TextBlock>
+                                    <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="12" FontWeight="DemiBold"  Width="90" Text="{Binding Path = CSurname}"></TextBlock>
+                                    <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="12" FontWeight="DemiBold"  Width="90" Text="{Binding Path = CPatronymic}"></TextBlock>
+                                    <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="12" FontWeight="DemiBold"  Width="100" Text="{Binding Path = Phone}"></TextBlock>
+                                    <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="12" FontWeight="DemiBold"  Width="200" Text="{Binding Path = Address}"></TextBlock>
+                                </WrapPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+        </StackPanel>
+    </Grid>
+</Page>

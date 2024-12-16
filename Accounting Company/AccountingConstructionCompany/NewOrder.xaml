@@ -1,0 +1,202 @@
+﻿<Window x:Class="AccountingConstructionCompany.NewOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:AccountingConstructionCompany"
+        mc:Ignorable="d"
+        Title="Новый заказ" Height="540" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None"  AllowsTransparency="True" Background="Transparent" ShowInTaskbar="True" Topmost="True" Icon="bin/img/helmet.ico">
+    <Grid MouseDown="Grid_MouseDown">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="White" Grid.RowSpan="4" Grid.ColumnSpan="4" CornerRadius="0,0,10,10" />
+        <Border Background="#fcd464" Grid.ColumnSpan="3">
+            <Grid>
+                <Button Style="{StaticResource MaterialDesignFlatAccentButton}" Name="HideButton" Click="HideButton_Click"  HorizontalAlignment="Right"  Foreground="Black" FontFamily="Open Sans Bold" FontSize="15" Margin="0,0,60,0">
+                    <materialDesign:PackIcon Kind="Minimize"/>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFlatAccentButton}" Name="CloseButton" Click="CloseButton_Click" HorizontalAlignment="Right"   Foreground="Black" FontFamily="Open Sans Bold" FontSize="15" Margin="0,0,10,0">
+                    <materialDesign:PackIcon Kind="Close"/>
+                </Button>
+            </Grid>
+        </Border>
+        
+        <Label Content="Клиент" Foreground="Black" Grid.Column="0" Grid.Row="1"  FontFamily="Open Sans Bold" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontWeight="Bold" Height="38" Width="96" Grid.RowSpan="2"></Label>
+        <Label Content="Товар/услуга" Grid.Column="1" Foreground="Black" Grid.Row="1"  FontFamily="Open Sans Bold" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontWeight="Bold" Height="38" Width="167" Grid.RowSpan="2"></Label>
+        <Label Content="Итог" Grid.Column="2" Foreground="Black" Grid.Row="1"  FontFamily="Open Sans Bold" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontWeight="Bold" Height="38" Width="64" Grid.RowSpan="2"></Label>
+
+        <ListView Grid.Row ="2" SelectionMode="Single" SelectionChanged="UserListView_SelectionChanged" Grid.Column="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Name="UserListView" ItemsSource="{Binding Path=Table}" Margin="10,30,10,0">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="FrameworkElement.Margin" Value="1"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="LayoutTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="LightGray"/>
+                            <Setter Property="BorderBrush" Value="LightGray"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1.1" Duration="0:0:0.1" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleX)"/>
+                                        <DoubleAnimation To="1.1" Duration="0:0:0.1" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleY)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleX)"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleY)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Margin="10,10,0,0" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel Width="250">
+                        <WrapPanel>
+                            <Label FontFamily="Comic Sans Bold" FontSize="20">Имя:</Label>
+                            <TextBlock Margin="5,4,0,0"  FontFamily="Comic Sans Bold" FontSize="20" FontWeight="DemiBold" Text="{Binding Path = CName}"></TextBlock>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Label FontFamily="Comic Sans Bold" FontSize="20">Фамилия:</Label>
+                            <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="20" FontWeight="DemiBold" Text="{Binding Path = CSurname}"></TextBlock>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Label FontFamily="Comic Sans Bold" FontSize="20">Отчество:</Label>
+                            <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="20" FontWeight="DemiBold" Text="{Binding Path = CPatronymic}"></TextBlock>
+                        </WrapPanel>
+                        <WrapPanel>
+                            <Label FontFamily="Comic Sans Bold" FontSize="20">Телефон:</Label>
+                            <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="20" FontWeight="DemiBold" Text="{Binding Path = Phone}"></TextBlock>
+                        </WrapPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView Grid.Row ="2" Grid.Column="1" SelectionChanged="ProductsListView_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Name="ProductsListView" ItemsSource="{Binding Path=Table}" Margin="10,30,10,0">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="FrameworkElement.Margin" Value="1"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="LayoutTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1" ScaleY="1"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="LightGray"/>
+                            <Setter Property="BorderBrush" Value="LightGray"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1.1" Duration="0:0:0.1" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleX)"/>
+                                        <DoubleAnimation To="1.1" Duration="0:0:0.1" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleY)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleX)"/>
+                                        <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleY)"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Margin="10,10,0,0" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <StackPanel Width="250">
+                            <WrapPanel>
+                                <Label FontFamily="Comic Sans Bold" FontSize="20">Наименование:</Label>
+                                <TextBlock Margin="5,4,0,0"  FontFamily="Comic Sans Bold" FontSize="20" FontWeight="DemiBold" Text="{Binding Path = ProductName}"></TextBlock>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <Label FontFamily="Comic Sans Bold" FontSize="20">Цена:</Label>
+                                <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="20" FontWeight="DemiBold" Text="{Binding Path = Price}"></TextBlock>
+                            </WrapPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        <StackPanel Grid.Column="2" Grid.Row="2" Width="400" HorizontalAlignment="Center">
+            <TextBox Name="CustomerData"  Margin="80,10,80,0" IsReadOnly="True" materialDesign:HintAssist.Hint="ФИО" 
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                     materialDesign:HintAssist.Foreground="Black"
+                     materialDesign:HintAssist.Background="White"
+                     materialDesign:HintAssist.FloatingScale="0.9"/>
+
+            <TextBox Name="AddressTextBox" Margin="80,10,80,0" IsReadOnly="True" materialDesign:HintAssist.Hint="Адрес" 
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                     materialDesign:HintAssist.Foreground="Black"
+                     materialDesign:HintAssist.Background="White"
+                     materialDesign:HintAssist.FloatingScale="0.9"/>
+            <TextBox Name="ProductTextBox" Margin="80,10,80,0" IsReadOnly="True" materialDesign:HintAssist.Hint="Товар/услуга" 
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                     materialDesign:HintAssist.Foreground="Black"
+                     materialDesign:HintAssist.Background="White"
+                     materialDesign:HintAssist.FloatingScale="0.9"/>
+            <TextBox Name="QuantityTextBox" TextChanged="QuantityTextBox_TextChanged" Margin="80,10,80,0" materialDesign:HintAssist.Hint="Количество" 
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                     materialDesign:HintAssist.Foreground="Black"
+                     materialDesign:HintAssist.Background="White"
+                     materialDesign:HintAssist.FloatingScale="0.9"/>
+            <TextBox Name="OverallTextBox" Margin="80,10,80,0" materialDesign:HintAssist.Hint="Итого" 
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                     materialDesign:HintAssist.Foreground="Black"
+                     materialDesign:HintAssist.Background="White"
+                     materialDesign:HintAssist.FloatingScale="0.9"/>
+            <TextBox Name="CommentTextBox" Margin="80,10,80,0" materialDesign:HintAssist.Hint="Комментарий" 
+                     Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                     materialDesign:HintAssist.Foreground="Black"
+                     materialDesign:HintAssist.Background="White"
+                     materialDesign:HintAssist.FloatingScale="0.9"/>
+            <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="CreateOrderButton" Click="CreateOrderButton_Click"   Content="Создать заказ" Background="#fcd464" Foreground="Black" Margin="0,20,0,0" Width="200"  />
+        </StackPanel>
+    </Grid>
+</Window>

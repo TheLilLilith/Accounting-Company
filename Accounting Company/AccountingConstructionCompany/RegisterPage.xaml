@@ -1,0 +1,78 @@
+﻿<Page x:Class="AccountingConstructionCompany.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:AccountingConstructionCompany"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RegisterPage">
+
+    <Grid>
+        <Border CornerRadius="20,20,20,20" Margin="0,10,0,0" Width="450" Height="300" Background="White">
+            <StackPanel>
+                <Label Content="Регистрация" Foreground="Black"  FontFamily="Open Sans Bold" FontSize="25" HorizontalAlignment="Center" Margin="0,10,0,0" FontWeight="Bold" ></Label>
+                <WrapPanel Margin="60,10,0,0">
+                    <!--Логин-->
+                    <TextBox x:Name="LogTextBox" Margin="0,0,0,0" Width="160" materialDesign:HintAssist.Hint="Логин" 
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                             materialDesign:HintAssist.Foreground="Black"/>
+                    <!--Пароль-->
+                    <PasswordBox Margin="10,0,0,0" Width="160" Name="PassTextBox"
+                                 Style="{StaticResource MaterialDesignFilledRevealPasswordBox}"
+                                 IsEnabled="{Binding IsChecked, ElementName=RevealPasswordOutlinedEnabled}"
+                                 materialDesign:HintAssist.Hint="Пароль"
+                                 materialDesign:TextFieldAssist.HasClearButton="True"
+                                 materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                                 materialDesign:HintAssist.Foreground="Black"/>
+                </WrapPanel>
+                <WrapPanel Margin="60,5,0,0">
+                    <!--Имя-->
+                    <TextBox x:Name="NameTextBox" Margin="0,0,0,0" Width="160" materialDesign:HintAssist.Hint="Имя" 
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                             materialDesign:HintAssist.Foreground="Black"/>
+                    <!--Фамилия-->
+                    <TextBox x:Name="SurTextBox" Margin="10,0,0,0" Width="160" materialDesign:HintAssist.Hint="Фамилия" 
+                             Style="{StaticResource MaterialDesignFilledTextBox}"
+                             Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                             materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                             materialDesign:HintAssist.Foreground="Black"/>
+                </WrapPanel>
+                <WrapPanel Margin="60,5,0,0">
+                    <!--Отчество-->
+                    <TextBox x:Name="PatronymicTextBox" Margin="0,0,0,0" Width="160" materialDesign:HintAssist.Hint="Отчество" 
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                     materialDesign:HintAssist.Foreground="Black"/>
+                    <CheckBox Name="HideCheckBox" Click="HideCheckBox_Click" Content="Отсутствует" Margin="10,0,0,0"></CheckBox>
+                </WrapPanel>
+                <WrapPanel Margin="60,5,0,0">
+                    <!--Телефон-->
+                    <TextBox x:Name="PhoneTextBox" Margin="0,0,0,0" Width="160" materialDesign:HintAssist.Hint="Номер телефона" 
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                     materialDesign:HintAssist.Foreground="Black"/>
+                    <!--Эл.Адрес-->
+                    <TextBox x:Name="MailTextBox" Margin="10,0,0,0" Width="160" materialDesign:HintAssist.Hint="Электронный адрес" 
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="Black"
+                     materialDesign:HintAssist.Foreground="Black"/>
+                </WrapPanel>
+                <WrapPanel Margin="70,10,0,0">
+                    <!--Кнопка назад-->
+                    <Button  Content="Назад" Foreground="#fcd464" Background="Transparent" Name="BackButton" Click="BackButton_Click"  Margin="0,0,0,0" Width="150" BorderThickness="0"/>
+                    <!--Кнопка регистрации-->
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}" Name="AcceptRegButton" Click="AcceptRegButton_Click"  Content="Принять" Background="#fcd464" Foreground="Black" Margin="10,0,0,0" Width="150"  />
+                </WrapPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

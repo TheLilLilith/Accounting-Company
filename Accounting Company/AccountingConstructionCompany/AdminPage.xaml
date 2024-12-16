@@ -1,0 +1,56 @@
+﻿<Page x:Class="AccountingConstructionCompany.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:AccountingConstructionCompany"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="196*"/>
+        </Grid.RowDefinitions>
+        <Label Content="Админ панель" Grid.Row="0" Foreground="Black"  FontFamily="Open Sans Bold" FontSize="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" FontWeight="Bold" ></Label>
+        <Border Background="White" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" CornerRadius="20,0,0,20" Width="650" Height="350" >
+            <ListView Grid.Row ="2" SelectionMode="Single"   ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Center" Name="TempUserListView"  ItemsSource="{Binding Path=Table}" Margin="10,10,0,0">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Margin="10,0,0,0" />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <StackPanel Width="600">
+                            <WrapPanel>
+                                <Label FontFamily="Comic Sans Bold" FontSize="12" Width="100">Имя:</Label>
+                                <Label FontFamily="Comic Sans Bold" FontSize="12" Width="100">Фамилия:</Label>
+                                <Label FontFamily="Comic Sans Bold" FontSize="12" Width="100">Отчество:</Label>
+                                <Label FontFamily="Comic Sans Bold" FontSize="12" Width="100">Телефон:</Label>
+                                <Label FontFamily="Comic Sans Bold" FontSize="12" Width="100">Компания:</Label>
+                            </WrapPanel>
+                            <WrapPanel>
+                                <TextBlock Margin="5,4,0,0"  FontFamily="Comic Sans Bold" FontSize="12"  Width="90" FontWeight="DemiBold" Text="{Binding Path = UserName}"></TextBlock>
+                                <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="12" FontWeight="DemiBold"  Width="90" Text="{Binding Path = UserSurname}"></TextBlock>
+                                <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="12" FontWeight="DemiBold"  Width="90" Text="{Binding Path = UserPatronymic}"></TextBlock>
+                                <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="12" FontWeight="DemiBold"  Width="100" Text="{Binding Path = Phone}"></TextBlock>
+                                <TextBlock Margin="5,4,0,0" FontFamily="Comic Sans Bold" FontSize="12" FontWeight="DemiBold"  Width="200" Text="{Binding Path = CompanyName}"></TextBlock>
+                            </WrapPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+        <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" Height="50" Margin="0,0,10,0">
+            <Button Style="{StaticResource MaterialDesignFlatAccentButton}" Name="DeleteButton" Click="DeleteButton_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,5"  Foreground="Black" Background="#fcd464" FontFamily="Open Sans Bold" FontSize="15"  Height="32" Width="59">
+            <materialDesign:PackIcon Kind="Delete" Height="27" Width="23"/>
+        </Button>
+        <Button Style="{StaticResource MaterialDesignFlatAccentButton}" Name="ApproveButton" Click="ApproveButton_Click" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,5"  Foreground="Black" Background="#fcd464" FontFamily="Open Sans Bold" FontSize="15"  Height="32" Width="59">
+            <materialDesign:PackIcon Kind="Check" Height="27" Width="23"/>
+        </Button>
+        </WrapPanel>
+    </Grid>
+</Page>

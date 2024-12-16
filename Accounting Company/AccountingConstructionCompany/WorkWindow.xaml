@@ -1,0 +1,48 @@
+﻿<Window x:Class="AccountingConstructionCompany.WorkWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:AccountingConstructionCompany"
+        mc:Ignorable="d"
+        Title="Рабочее пространство" Height="450" Width="800"  WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" Topmost="False" Background="Transparent" Icon="bin/img/helmet.ico">
+    <Grid MouseDown="Grid_MouseDown">
+
+        <Border Grid.Column="0" Width="162" HorizontalAlignment="Left" Background="#fcd464">
+            <StackPanel Name="btnMenu" Margin="0,50,55,0">
+
+                <Button Background="Transparent" BorderThickness="0" Foreground="DimGray" Name="DashBoardButton" Click="DashBoardButton_Click">Главная</Button>
+                <Button Background="Transparent" BorderThickness="0" Foreground="DimGray" Height="50" FontWeight="Normal" Name="UserPageButton" Click="UserPageButton_Click">
+                    <TextBlock TextAlignment="Center">Личный<LineBreak/>кабинет</TextBlock>
+                </Button>
+                <Button Background="Transparent" BorderThickness="0" Foreground="DimGray"  Height="50" FontWeight="Normal" Name="CustomersPageButton" Click="CustomersPageButton_Click" >
+                    <TextBlock TextAlignment="Center">Работа с<LineBreak/>клиентами</TextBlock>
+                </Button>
+                <Button Background="Transparent" BorderThickness="0" Foreground="DimGray" Height="50" FontWeight="Normal" Name="WarehousePageButton" Click="WarehousePageButton_Click">
+                    <TextBlock TextAlignment="Center">Работа со<LineBreak/>складом</TextBlock>
+                </Button>
+                <Button Background="Transparent" BorderThickness="0" Foreground="DimGray" FontWeight="Normal" Name="ReportsPageButton" Click="ReportsPageButton_Click">Отчеты</Button>
+                <Button Background="Transparent" BorderThickness="0" Foreground="DimGray" FontWeight="Normal" Name="CashPageButton" Click="CashPageButton_Click">Касса</Button>
+                <Button Background="Transparent" BorderThickness="0" Foreground="DimGray" FontWeight="Normal" Name="GoodsPageButton" Click="GoodsPageButton_Click">Товары</Button>
+                <Button Background="Transparent" BorderThickness="0" Foreground="DimGray" FontWeight="Normal" Name="AdminPageButton" Click="AdminPageButton_Click">Админ</Button>
+            </StackPanel>
+            
+        </Border>
+        <Border Width="684" Background="#f2f2f8" HorizontalAlignment="Right"  CornerRadius="30,0,0,30">
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
+            
+            <Frame Name="WorkFrame" NavigationUIVisibility="Hidden">
+                
+            </Frame>
+        </Border>
+        <Button Style="{StaticResource MaterialDesignFlatAccentButton}" Name="HideButton" Click="HideButton_Click"  HorizontalAlignment="Right" VerticalAlignment="Top"  Foreground="Black" FontFamily="Open Sans Bold" FontSize="15" Margin="0,5,70,0">
+            <materialDesign:PackIcon Kind="Minimize"/>
+        </Button>
+        <Button Style="{StaticResource MaterialDesignFlatAccentButton}" Name="CloseButton" Click="CloseButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top"   Foreground="Black" FontFamily="Open Sans Bold" FontSize="15" Margin="0,5,20,0">
+            <materialDesign:PackIcon Kind="Close"/>
+        </Button>
+    </Grid>
+</Window>
